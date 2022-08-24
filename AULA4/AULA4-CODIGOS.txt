@@ -1,0 +1,26 @@
+DDL:
+
+CREATE TABLE setor(codigo_setor SERIAL PRIMARY KEY, nome VARCHAR(20) NOT NULL UNIQUE);
+
+CREATE TABLE empregado(matricula INT PRIMARY KEY, 
+	     nome VARCHAR(40) NOT NULL, 
+	     email VARCHAR(30) UNIQUE, 
+	     codigo_setor INT,
+	     FOREIGN KEY (codigo_setor) REFERENCES setor(codigo_setor) ON UPDATE CASCADE ON DELETE NO ACTION);
+
+
+DML
+
+INSERT INTO setor (nome) VALUES ('RH');
+INSERT INTO setor (nome) VALUES ('CPD');
+INSERT INTO setor (nome) VALUES ('COMPRAS');
+
+INSERT INTO empregado (matricula, nome, email, codigo_setor) VALUES (123, 'JOÃO DA SILVA', 'joao@gmail.com',1);
+INSERT INTO empregado (matricula, nome, email, codigo_setor) VALUES (124, 'ANA DA SILVA', 'ana@gmail.com',2);
+
+UPDATE empregado SET codigo_setor = 100 WHERE codigo_setor = 1;
+
+DQL
+
+SELECT * FROM setor;
+SELECT * FROM empregado;

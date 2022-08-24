@@ -1,0 +1,43 @@
+Evite usar comandos em letra minúscula para não se eprder no meio do código.
+CHAR E VARCHAR - CHAR É FIXO E VARCHAR É ATÉ TAL NÚMERO 
+NOT NULL - não pode ser nulo
+UNIQUE - tem que ser único
+CHECK(preco > 0) - preço tem que ser maior que zero
+SMALLINT - pequena capacidade de armazenamento
+
+DDL (DATA DEFITION LANGUAGE) - DEFINIÇÃO DE DADOS
+
+Exemplos de dados de uma tabela:
+CHAVES CANDIDATAS (ALTERNATE KEY - AK)
+CODIGO_CLIENTE 	- melhor escolha
+CPF 
+EMAIL
+CELULAR
+
+comandos DDL:
+CREATE TABLE cliente(codigo_cliente SERIAL PRIMARY KEY, nome VARCHAR(40), telefone VARCHAR(11), email VARCHAR(50)); 															cria uma tabela com os dados indicados
+ALTER TABLE cliente ADD COLUMN cpf CHAR(11);																											adiciona uma coluna
+ALTER TABLE cliente DROP COLUMN email;																												apaga uma coluna
+ALTER TABLE cliente ALTER COLUMN nome TYPE VARCHAR(60);																									altera uma coluna
+CREATE TABLE produto(codigo_produto SERIAL PRIMARY KEY, nome VARCHAR(40) NOT NULL UNIQUE, descricao TEXT, preco NUMERIC CHECK(preco > 0) NOT NULL, quantidadde_estoque SMALLINT DEFAULT 0); 			cria uma tabela sem os dados, apenas com os títulos) )
+DROP TABLE produto;																															apaga a tabela
+
+DML (DATA MANIPULATION LANGUAGE) - LINGUAGEM DE MANIPULAÇÃO
+
+comandos DML:
+INSERT INTO cliente(nome, telefone, email) VALUES('MARIA','2422359090','MARIA@GMAIL.COM'); 				inserir informações na tabela
+INSERT INTO produto(nome, descricao, preco, quantidadde_estoque) VALUES('BATATA','INGLESA',4,10);			inserir informações na tabela
+UPDATE cliente SET cpf='12345678910' WHERE codigo_cliente=1; 									altera informações na tabela
+DELETE FROM cliente; 																apaga a tabela inteira
+DELETE FROM cliente WHERE codigo_cliente=1; 												apaga a linha /1/ de uma tabela
+UPDATE cliente SET nome='JOÃO', cpf='10987654321' WHERE codigo_cliente=2;							atualiza dados da linha /2/
+	
+
+
+
+DQL (DATA QUERY LANGUAGE) LINGUAGEM DE CONSULTA
+
+comandos DQL:
+SELECT * FROM cliente ORDER BY codigo_cliente DESC;										exibe a tabela em ordem descrescente
+SELECT * FROM cliente ORDER BY codigo_cliente ASC;										exibe a tabela em ordem crescente
+SELECT * FROM cliente WHERE codigo_cliente=2;											exibe apenas o cliente com codigo = 2
